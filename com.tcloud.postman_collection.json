@@ -1,0 +1,378 @@
+{
+	"info": {
+		"_postman_id": "4a850847-b681-42d5-b9fe-6f40e3d30c2b",
+		"name": "com.tcloud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "12411c1a-4e94-474d-8585-6cf6ba190e28",
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"var jsonData = pm.response.json();",
+							"console.log(\"token: \");",
+							"console.log(jsonData.token);",
+							"pm.environment.set(\"token\", jsonData.token);",
+							"",
+							"var expectedSchema = {",
+							"",
+							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"token\": {",
+							"      \"type\": \"string\"",
+							"    },",
+							"    \"userStatus\": {",
+							"      \"type\": \"string\"",
+							"    },",
+							"    \"creationDate\": {",
+							"      \"type\": \"string\"",
+							"    }",
+							"  },",
+							"  \"required\": [",
+							"    \"token\",",
+							"    \"userStatus\",",
+							"    \"creationDate\"",
+							"  ]",
+							"}",
+							"",
+							"pm.test('Schema is valid', function () {",
+							"    var result =tv4.validateResult(pm.response.json(), expectedSchema)",
+							"    if(result.valid){",
+							"        console.log(result.valid);",
+							"    }",
+							"    pm.expect(result.valid).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"eve8@gmail.com\",\n  \"firstName\": \"eve8\",\n  \"lastName\": \"Lastname\",\n  \"autoVerification\": true,\n  \"source\": {\n    \"params\": \"string\",\n    \"location\": \"REGULAR\"\n  },\n  \"pwdhash\": \"142142540d8db22cf191c770cb8cbb61648d13c1ad1fb911526f13cf1c7fe01b\",\n  \"backupMk\": true\n}\n"
+				},
+				"url": "{{baseUrl}}/api/v1/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba7fdb4e-1248-4139-8784-14190e327769",
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var expectedSchema = {",
+							"",
+							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"token\": {",
+							"      \"type\": \"string\"",
+							"    },",
+							"    \"userStatus\": {",
+							"      \"type\": \"string\"",
+							"    },",
+							"    \"sessionTimeout\": {",
+							"      \"type\": \"integer\"",
+							"    },",
+							"    \"backupMk\": {",
+							"      \"type\": \"boolean\"",
+							"    }",
+							"  },",
+							"  \"required\": [",
+							"    \"token\",",
+							"    \"userStatus\",",
+							"    \"sessionTimeout\",",
+							"    \"backupMk\"",
+							"  ]",
+							"}",
+							"",
+							"pm.test('Schema is valid', function () {",
+							"    var result =tv4.validateResult(pm.response.json(), expectedSchema)",
+							"    if(result.valid){",
+							"        console.log(result.valid);",
+							"    }",
+							"    pm.expect(result.valid).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pwdhash\": \"142142540d8db22cf191c770cb8cbb61648d13c1ad1fb911526f13cf1c7fe01b\",\n\t\"username\": \"eve7@gmail.com\"\n\t\n}"
+				},
+				"url": "{{baseUrl}}/api/v1/login"
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5db51649-94a8-439d-a373-da8f7fa7c33b",
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "Authorization",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "content-length",
+						"value": "0",
+						"type": "text"
+					},
+					{
+						"key": "accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "{{baseUrl}}/api/v1/logout"
+			},
+			"response": []
+		},
+		{
+			"name": "keep-alive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8481bcf6-7da5-438a-8197-c898f69df126",
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "{{baseUrl}}/api/v1/keep-alive"
+			},
+			"response": []
+		},
+		{
+			"name": "recovery id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d47d49d2-d37d-470c-aa34-e689726cec69",
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/recovery/id?email=eve2@gmail.com",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"recovery",
+						"id"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "eve2@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify resend",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e16352e5-e96e-4adc-9d63-ce23111e92b3",
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "{{baseUrl}}/api/v1/verify/resend"
+			},
+			"response": []
+		},
+		{
+			"name": "recovery token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e24bfb92-e718-4465-ac19-ab3d6ba77fa6",
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}//recovery/token/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"",
+						"recovery",
+						"token",
+						""
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "93a6cd13-9d78-4e2c-8bf1-645e4480064c",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
