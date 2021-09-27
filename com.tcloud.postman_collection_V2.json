@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "4a850847-b681-42d5-b9fe-6f40e3d30c2b",
 		"name": "com.tcloud",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -80,17 +80,7 @@
 					"mode": "raw",
 					"raw": "{\n  \"username\": \"eve13@gmail.com\",\n  \"firstName\": \"eve13\",\n  \"lastName\": \"Lastname\",\n  \"autoVerification\": true,\n  \"source\": {\n    \"params\": \"string\",\n    \"location\": \"REGULAR\"\n  },\n  \"pwdhash\": \"142142540d8db22cf191c770cb8cbb61648d13c1ad1fb911526f13cf1c7fe01b\",\n  \"backupMk\": true\n}\n\n"
 				},
-				"url": {
-					"raw": "{{baseUrl}}/api/v1/signup",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"signup"
-					]
-				}
+				"url": "{{baseUrl}}/api/v1/signup"
 			},
 			"response": []
 		},
@@ -166,17 +156,7 @@
 					"mode": "raw",
 					"raw": "{\n\t\"pwdhash\": \"142142540d8db22cf191c770cb8cbb61648d13c1ad1fb911526f13cf1c7fe01b\",\n\t\"username\": \"eve13@gmail.com\"\n\t\n}"
 				},
-				"url": {
-					"raw": "{{baseUrl}}/api/v1/login",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"login"
-					]
-				}
+				"url": "{{baseUrl}}/api/v1/login"
 			},
 			"response": []
 		},
@@ -269,17 +249,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": {
-					"raw": "{{baseUrl}}/api/v1/logout",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"logout"
-					]
-				}
+				"url": "{{baseUrl}}/api/v1/logout"
 			},
 			"response": []
 		},
