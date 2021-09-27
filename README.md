@@ -15,7 +15,7 @@ npm version -
 ```
 1. Download the repository.
 2. Navigate to the directory -
-cd com.addresses
+cd com.tcloud
 3. Type - 'npm install'
 ```
 
@@ -37,7 +37,6 @@ The above script will also produce any screenshots upon any test failure.
 
 ```
 To view the report, navigate to the report folder -
-com.addresses/cypress/reports/mochareports/report.html
+com.tcloud/cypress/reports/mochareports/report.html
 Right click the above file and open in a browser.
 ```
-
